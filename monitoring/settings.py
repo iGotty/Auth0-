@@ -1,3 +1,4 @@
+
 """
 Django settings for monitoring project.
 
@@ -37,8 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'activos',
     'measurements',
     'variables',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -78,11 +81,11 @@ WSGI_APPLICATION = 'monitoring.wsgi.application'
 DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.postgresql_psycopg2',
-         'NAME': 'name_db',
-         'USER': 'user_db',
-         'PASSWORD': 'user_password',
-         'HOST': 'localhost',
-         'PORT': '',
+         'NAME': 'monitoring-db',
+         'USER': 'monitoring_user',
+         'PASSWORD': 'isis2503',
+         'HOST': '10.25.48.3',
+         'PORT': '5432',
      }
  }
 
@@ -133,3 +136,13 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'static', 'media')
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
+LOGIN_URL = "/login/auth0"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "https://isis2503-sanvarp.us.auth0.com/v2/logout?returnTo=http%3A%2F%2F35.223.99.195:8080"
+SOCIAL_AUTH_TRAILING_SLASH = False # Remove end slash from routes
+SOCIAL_AUTH_AUTH0_DOMAIN = 'isis2503-sanvarp.us.auth0.com'
+SOCIAL_AUTH_AUTH0_KEY = 'ufrwoX2MkDFnW0lybVqg3zKv7kez3K5d'
+SOCIAL_AUTH_AUTH0_SECRET = 'B3kMuM5uFG_HzgmUUhWBQQCEul_C-L_a0zaw_Mv_U0QO_4n01gl1BOmROjxPZDGY'
+
+SOCIAL_AUTH_AUTH0_SCOPE = [ 'openid', 'profile','email','role', ] 
+AUTHENTICATION_BACKENDS = { 'monitoring.auth0backend.Auth0', 'django.contrib.auth.backends.ModelBackend', }
