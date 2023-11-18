@@ -10,7 +10,7 @@ from monitoring.auth0backend import getRole
 @login_required
 def variable_list(request):
     role = getRole(request)
-    if role == "Gerencia Campus":
+    if role == "Gerencia Campus" or role == "FinancieroCreador":
         variables = get_variables()
         context = {
             'variable_list': variables
