@@ -22,20 +22,24 @@ def activo_list(request):
 
 @login_required
 def activo_create(request):
-    if request.method == 'POST':
-        form = ActivoForm(request.POST)
-        if form.is_valid():
-            create_activo(form)
-            messages.add_message(request, messages.SUCCESS, 'Activo create successful')
-            return HttpResponseRedirect(reverse('activoCreate'))
+    role = getRole(request)
+    if role == "FinancieroCreador":
+        if request.method == 'POST':
+            form = ActivoForm(request.POST)
+            if form.is_valid():
+                create_activo(form)
+                messages.add_message(request, messages.SUCCESS, 'Activo create successful')
+                return HttpResponseRedirect(reverse('activoCreate'))
+            else:
+                print(form.errors)
         else:
-            print(form.errors)
+            form = ActivoForm()
+
+        context = {
+            'form': form,
+        }
+
+        return render(request, 'Activo/activoCreate.html', context)
     else:
-        form = ActivoForm()
-
-    context = {
-        'form': form,
-    }
-
-    return render(request, 'Activo/activoCreate.html', context)
+        return HttpResponse("Unauthorized User")
 
