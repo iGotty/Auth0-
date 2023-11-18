@@ -138,7 +138,7 @@ STATICFILES_DIRS = (
 )
 LOGIN_URL = "/login/auth0"
 LOGIN_REDIRECT_URL = "/"
-LOGOUT_REDIRECT_URL = "https://isis2503-sanvarp.us.auth0.com/v2/logout?returnTo=http%3A%2F%2F34.121.3.237:8080" # RECORDAR CAMBIAR ESTO
+LOGOUT_REDIRECT_URL = "https://isis2503-sanvarp.us.auth0.com/v2/logout?returnTo=http%3A%2F%2F34.135.93.169:8080" # RECORDAR CAMBIAR ESTO
 SOCIAL_AUTH_TRAILING_SLASH = False # Remove end slash from routes
 SOCIAL_AUTH_AUTH0_DOMAIN = 'isis2503-sanvarp.us.auth0.com'
 SOCIAL_AUTH_AUTH0_KEY = 'ufrwoX2MkDFnW0lybVqg3zKv7kez3K5d'
