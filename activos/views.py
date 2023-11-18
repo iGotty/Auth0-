@@ -10,7 +10,7 @@ from monitoring.auth0backend import getRole
 @login_required
 def activo_list(request):
     role = getRole(request)
-    if role == "Financiero":
+    if role == "Financiero" or role == "FinancieroCreador":
         activos = get_activos()
         context = {
             'activo_list': activos
